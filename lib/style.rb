@@ -5,7 +5,6 @@ class Style
 
     def initialize(name)
         @name = name
-        @beers = []
         @@all << self
     end
 
@@ -14,7 +13,7 @@ class Style
     end
 
     def beers
-        @beers
+        Beer.all.select {|b| b.style == self}
     end
     
 end
