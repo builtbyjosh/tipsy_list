@@ -3,8 +3,6 @@
 
 class API
 
-    
-    #BREWERY_URL='https://sandbox-api.brewerydb.com/v2/breweries' 
     BEER_URL = 'https://sandbox-api.brewerydb.com/v2/beers/'
 
     def fetch_data
@@ -13,12 +11,12 @@ class API
         body = uri.read        
         brewery = JSON.parse(body)
         brewery["data"].each do |e|
-            #temp_brew = Brewery.new(e["breweries"][0]["names"], e["breweries"][0]["website"])
+            temp_brew = 
             if e["style"]
                 name = e["name"]
-                description =  e["style"]["description"] || nil
-                style = e["style"]['shortName'] || nil
-                brewery = e["breweries"][0]["name"]
+                description =  e["style"]["description"]
+                style = e["style"]['shortName']
+                brewery = Brewery.new(e["breweries"][0]["name"])
                 Beer.new(name, description, style, brewery)
             #binding.pry  
             end
