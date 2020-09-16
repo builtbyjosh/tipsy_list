@@ -6,7 +6,8 @@ class Beer
     def initialize(name, description, style , brewery)
         @name = name
         @description = description
-        self.brewery=(brewery)
+        @brewery = brewery
+        #self.brewery=(brewery)
         #self.style=(style) 
         @style = style
         @@all << self
@@ -16,10 +17,10 @@ class Beer
         @@all
     end
 
-    def brewery=(brewery)
-        @brewery = brewery
-        brewery.add_beer(self)
-    end
+    # def brewery=(brewery)
+    #     @brewery = brewery
+    #     brewery.add_beer(self)
+    # end
 
     # def style=(style)
     #     @style = style
