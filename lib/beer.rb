@@ -3,7 +3,7 @@ class Beer
 
     @@all = []
 
-    def initialize(name, description, brewery, style)
+    def initialize(name, description, style, brewery)
         @name = name
         @description = description
         @brewery = brewery

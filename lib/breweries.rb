@@ -5,6 +5,7 @@ class Brewery
 
     def initialize(name)
         @name = name
+        @beers = []
         @@all << self
     end
 
