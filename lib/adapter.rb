@@ -15,7 +15,7 @@ class API
             if e["style"]
                 name = e["name"]
                 description =  e["style"]["description"]
-                style = e["style"]['shortName']
+                style = Style.new(e["style"]['shortName'])
                 brewery = Brewery.new(e["breweries"][0]["name"])
                 Beer.new(name, description, style, brewery)
             #binding.pry  
