@@ -2,15 +2,29 @@ class CLI
 
     def main        
         fetch_beer_info
-        greet_user        
+        greet_user
+        #binding.pry
         menu        
         say_goodbye
-        binding.pry
+        
     end
 
     def greet_user
         puts "        Welcome to Tipsy List.          "
         puts "Your one stop spot for beer information!"
+        puts ""
+        puts "########################################"
+        puts "#                                      #"
+        puts "#                                      #"
+        puts "#          .~~~~.       .~~~~.         #"
+        puts "#         _i====i       i====i_        #"
+        puts "#        (_|cccc|       |cccc|_)       #"
+        puts "#          |cccc|       |cccc|         #"
+        puts "#          `-==-'       `-==-'         #"
+        puts "#                                      #"
+        puts "#                                      #"
+        puts "########################################"
+        puts ""
     end
 
     def fetch_beer_info
@@ -22,21 +36,27 @@ class CLI
     end
 
     def menu      
-                 
-        puts "To list all Breweries, type 'List Breweries'."
-        puts "To list all Beers, type 'List Beers'."
-        puts "To see a beer list for a specific Brewery, type 'Beer List'"
+        puts "What would you like to know?"
+        puts ""
+        puts "Choose menu number:"
+        puts "  1. To list all Breweries."
+        puts "  2. To list all Beers."
+        puts "  3. To see a beer list for a specific Brewery."
+        puts "  4. To see more info on a specific Beer."
+        puts ""
         puts "To quit, type 'exit'."
 
         input = gets.chomp
 
         case input
-        when "List Breweries"
+        when "1"
             list_breweries
-        when "List Beers"
+        when "2"
             list_beers
-        when "Beer List"
+        when "3"
             beers_at_brewery
+        when "4"
+            beer_info
         end
 
         unless input == "exit"
@@ -46,27 +66,40 @@ class CLI
     end
 
     def list_breweries
-        Brewery.all.each {|b| puts b.name}
+        Brewery.all.each {|b| puts "- #{b.name}" }        
     end
 
     def list_beers
-        Beer.all.each {|b| puts b.name}
+        Beer.all.each {|b| puts "- #{b.name}"}
     end
 
     def beers_at_brewery
         puts "What Brewery would you like to display the beers for?"
         input = gets.chomp
 
-        Beer.all.each_with_index do |b, i|
-            puts "#{i+1}. #{b.name}" if b.brewery.name == input
+        Beer.all.each do |b|
+            puts b.name if b.brewery.name == input
         end
-    
+    end
 
-        # if brewery = Brewery.find_by_name(input)
-        #     brewery.beers.each do |b|
-        #         puts b.name
-        #     end
-        # end
+    def beer_info
+        puts "What Beer would you like more information on?"
+        puts ""
+        input = gets.chomp
+        puts ""
+
+        Beer.all.each do |b|
+            if b.name == input
+                puts "Name: #{b.name}"
+                puts ""
+                puts "Description: #{b.description}"
+                puts ""
+                puts "Style: #{b.style}"
+                puts ""
+                puts "Brewery: #{b.brewery}"
+                puts ""
+            end
+        end
 
     end
 end
