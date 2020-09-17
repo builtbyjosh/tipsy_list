@@ -45,17 +45,18 @@ class CLI
         puts "  4. To see more info on a specific Beer."
         puts ""
         puts "To quit, type 'exit'."
+        puts ""
 
         input = gets.chomp
 
-        case input
-        when "1"
+        
+        if input == "1"
             list_breweries
-        when "2"
+        elsif input == "2"
             list_beers
-        when "3"
+        elsif input == "3"
             beers_at_brewery
-        when "4"
+        elsif input == "4"
             beer_info
         end
 
@@ -66,23 +67,28 @@ class CLI
     end
 
     def list_breweries
-        Brewery.all.each {|b| puts "- #{b.name}" }        
+        Brewery.all.each {|b| puts "    - #{b.name}" } 
+        beers_at_brewery
     end
 
     def list_beers
-        Beer.all.each {|b| puts "- #{b.name}"}
+        Beer.all.each {|b| puts "   - #{b.name}"}
+        beer_info
     end
 
     def beers_at_brewery
+        puts ""
         puts "What Brewery would you like to display the beers for?"
         input = gets.chomp
 
         Beer.all.each do |b|
-            puts b.name if b.brewery.name == input
+            puts "  - #{b.name}" if b.brewery.name == input
         end
+        beer_info
     end
 
     def beer_info
+        puts ""
         puts "What Beer would you like more information on?"
         puts ""
         input = gets.chomp
@@ -90,17 +96,22 @@ class CLI
 
         Beer.all.each do |b|
             if b.name == input
-                puts "Name: #{b.name}"
+                puts "Name:     #{b.name}"
                 puts ""
-                puts "Description: #{b.description}"
+                puts "ABV:      #{b.abv}"
                 puts ""
-                puts "Style: #{b.style}"
+                puts "Style:    #{b.style.name}"
                 puts ""
-                puts "Brewery: #{b.brewery}"
+                puts "Brewery:  #{b.brewery.name}"
+                puts ""
+                puts "Website:  #{b.brewery.website}"
+                puts ""                                
+                puts "Description:"
+                puts ""
+                puts "          #{b.description}"
                 puts ""
             end
         end
-
     end
 end
 
