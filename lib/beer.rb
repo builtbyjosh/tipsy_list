@@ -1,14 +1,13 @@
 class Beer
-    attr_accessor :name, :description, :brewery, :style
+    attr_accessor :name, :description, :brewery, :style, :abv
 
     @@all = []
 
-    def initialize(name, description, style , brewery)
+    def initialize(name, abv, description, style , brewery)
         @name = name
+        @abv = abv
         @description = description
         @brewery = brewery
-        #self.brewery=(brewery)
-        #self.style=(style) 
         @style = style
         @@all << self
     end
@@ -16,17 +15,5 @@ class Beer
     def self.all
         @@all
     end
-
-    # def brewery=(brewery)
-    #     @brewery = brewery
-    #     brewery.add_beer(self)
-    # end
-
-    # def style=(style)
-    #     @style = style
-    #     unless style.beers.include?(self)
-    #         style.beers << self
-    #     end
-    # end
     
 end
