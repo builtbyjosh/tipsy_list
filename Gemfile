@@ -5,7 +5,4 @@ source 'https://rubygems.org'
 
 gem "rake", "~> 12.0"
 gem "pry"
-#gem "open-uri"
-#gem "net/http"
-gem 'dotenv'
 gem 'require_all'
