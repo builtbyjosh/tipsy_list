@@ -13,20 +13,21 @@ class CLI
     end
 
     def greet_user
-        puts "        Welcome to Tipsy List.          "
-        puts "Your one stop spot for beer information!"
         puts ""
-        puts "########################################"
-        puts "#                                      #"
-        puts "#                                      #"
-        puts "#          .~~~~.       .~~~~.         #"
-        puts "#         _i====i       i====i_        #"
-        puts "#        (_|cccc|       |cccc|_)       #"
-        puts "#          |cccc|       |cccc|         #"
-        puts "#          `-==-'       `-==-'         #"
-        puts "#                                      #"
-        puts "#                                      #"
-        puts "########################################"
+        puts "               Welcome to Tipsy List.               ".colorize(:green)
+        puts "Your one stop spot for beer and brewery information!".colorize(:green)
+        puts ""
+        puts "      ########################################".colorize(:blue)
+        puts "      #".colorize(:blue) + "                                      " + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "                                      " + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "          .~~~~.       .~~~~.         ".colorize(:yellow) + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "         _i====i       i====i_        ".colorize(:light_green) + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "        (_|cccc|       |cccc|_)       ".colorize(:light_green) + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "          |cccc|       |cccc|         ".colorize(:light_green) + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "          `-==-'       `-==-'         ".colorize(:light_green) + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "                                      " + "#".colorize(:blue)
+        puts "      #".colorize(:blue) + "                                      " + "#".colorize(:blue)
+        puts "      ########################################".colorize(:blue)
         puts ""
     end
 
@@ -42,7 +43,7 @@ class CLI
     end
 
     def menu      
-        puts "Choose menu number for more information:"
+        puts "Choose menu number for more information:".colorize(:light_blue).underline
         puts "  1. Get more information on a specific Brewery?"        
         puts "  2. Show a beer list for a specific Brewery."
         puts "  3. See more info on a specific Beer."        
@@ -68,7 +69,7 @@ class CLI
         elsif input == "exit"
             input = "exit"
         else
-            puts "Invalid Choice, please try again."
+            puts "Invalid Choice, please try again.".colorize(:red)
         end
 
         unless input == "exit"
@@ -79,17 +80,17 @@ class CLI
 
     def list_breweries
         puts "Here is list of available breweries."
-        Brewery.all.each {|b| puts "    - #{b.name}" }
+        Brewery.all.each {|b| puts "    - #{b.name}".colorize(:blue) }
         puts ""
     end
 
     def list_beers(brewery_name)
-        Beer.all.each {|b| puts "   - #{b.name}" if b.brewery == brewery_name}
+        Beer.all.each {|b| puts "   - #{b.name}".colorize(:blue) if b.brewery == brewery_name}
         beer_info
     end
 
     def list_all_beers
-        Beer.all.each {|b| puts "   - #{b.name}"}
+        Beer.all.each {|b| puts "   - #{b.name}".colorize(:blue)}
         beer_info
     end
 
@@ -150,7 +151,7 @@ class CLI
             end
         end
         puts ""
-        puts "Would you like to see the beer list for this brewery? (Y/N)"
+        puts "Would you like to see the beer list for this brewery? (Y/N)".colorize(:blue)
         input2 = gets.chomp.downcase
         if input2 == "y"
             list_beers(input)
