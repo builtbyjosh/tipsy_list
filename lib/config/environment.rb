@@ -2,9 +2,6 @@
 require 'bundler/setup'
 Bundler.require
 
-require 'dotenv'
-Dotenv.load
-
 require 'open-uri'
 require 'net/http'
 require 'json'
