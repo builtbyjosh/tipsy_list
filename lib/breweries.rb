@@ -1,11 +1,16 @@
 class Brewery
-    attr_accessor :name, :website
+    attr_accessor :name, :website, :established, :street_address, :region, :locality, :zip
 
     @@all = []
 
-    def initialize(name, website)
+    def initialize(name:, website:, established:, street_address:, locality:, region:, zip:)
         @name = name
         @website = website
+        @established = established
+        @street_address = street_address
+        @locality = locality
+        @region = region
+        @zip = zip
         @@all << self
     end
 
@@ -13,7 +18,4 @@ class Brewery
         @@all
     end
 
-    def beers
-        Beer.all.select {|b| b.brewery == self}
-    end   
 end
