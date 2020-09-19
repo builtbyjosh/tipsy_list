@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Use this gem to find information on different breweries and beers available. Simply follow the menu prompts to access the information.
 
 ## Development
 
