@@ -16,7 +16,11 @@ class Beer
         @@all
     end
     
-    def self.brewery_beer(input)
+    def self.brewery_beer
+        puts ""
+        puts "What Brewery would you like to display the beers for?"
+        puts ""
+        input = gets.chomp
         @@all.each {|b| puts "   - #{b.name}".colorize(:blue) if b.brewery == input}
     end
 
@@ -24,7 +28,7 @@ class Beer
         Beer.all.each {|b| puts "   - #{b.name}".colorize(:blue)}
     end
 
-    def self.beer_spec(input)        
+    def self.beer_spec(input) 
         info = Beer.all.find {|b| b.name == input}        
         puts "Name:".colorize(:light_blue).underline + "     #{info.name}"
         puts ""
@@ -37,6 +41,6 @@ class Beer
         puts "Description:".colorize(:light_blue).underline
         puts ""
         puts "          #{info.description}"
-        puts ""        
+        puts ""
     end
 end

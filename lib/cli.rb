@@ -86,12 +86,8 @@ class CLI
         beer_info
     end
 
-    def beers_at_brewery
-        puts ""
-        puts "What Brewery would you like to display the beers for?"
-        puts ""
-        input = gets.chomp
-        Beer.brewery_beer(input)        
+    def beers_at_brewery        
+        Beer.brewery_beer       
         beer_info        
     end
 
@@ -101,7 +97,12 @@ class CLI
         puts ""
         input = gets.chomp
         puts ""
-        Beer.beer_spec(input)                 
+        if Beer.all.find {|b| b.name == input}
+            Beer.beer_spec(input)
+        else
+            error_msg
+            beer_info
+        end
     end
 
     def brewery_info
@@ -122,10 +123,14 @@ class CLI
             elsif input2 == "n"
                 menu
             else
-                puts "404: Beer not found!".colorize(:red)
-                puts "Please Try again".colorize(:red)
+                error_msg
             end
         end
+    end
+
+    def error_msg
+        puts "404: Beer not Found!".colorize(:red)
+        puts "Please try again.".colorize(:red)
     end
 end
 
