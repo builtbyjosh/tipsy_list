@@ -86,8 +86,12 @@ class CLI
         beer_info
     end
 
-    def beers_at_brewery        
-        Beer.brewery_beer       
+    def beers_at_brewery
+        puts ""
+        puts "What Brewery would you like to display the beers for?"
+        puts ""
+        input = gets.chomp
+        Beer.brewery_beer(input)       
         beer_info        
     end
 
@@ -105,16 +109,23 @@ class CLI
         end
     end
 
+    
+
     def brewery_info
         puts ""
         puts "What Brewery would you like more information on?"
         puts ""
         input = gets.chomp
         puts ""
-        Brewery.brewery_spec(input)
+        if Brewery.all.find {|b| b.name == input}
+            Brewery.brewery_spec(input)
+        else
+            error_msg
+            brewery_info
+        end
         puts ""
         input2 = ""
-        while input2 != "n"
+        if input2 != "n"
             puts "Would you like to see the beer list for this brewery? (Y/N)".colorize(:blue)
             input2 = gets.chomp.downcase
             if input2 == "y"

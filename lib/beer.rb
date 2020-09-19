@@ -16,11 +16,7 @@ class Beer
         @@all
     end
     
-    def self.brewery_beer
-        puts ""
-        puts "What Brewery would you like to display the beers for?"
-        puts ""
-        input = gets.chomp
+    def self.brewery_beer(input)
         @@all.each {|b| puts "   - #{b.name}".colorize(:blue) if b.brewery == input}
     end
 
